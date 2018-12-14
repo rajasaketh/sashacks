@@ -1,0 +1,14 @@
+/* create a new lib as a subfolder of WORK */
+options dlcreatedir;
+libname mywork "%sysfunc(getoption(WORK))/mywork";
+
+/* optional: one-level names will default to MYWORK lib */
+options user=mywork;
+
+/* Use and enjoy */
+data one two three;
+ set sashelp.class;
+run;
+
+/* cleanup MYWORK before the next task */
+proc datasets nolist nodetails lib=mywork kill;
