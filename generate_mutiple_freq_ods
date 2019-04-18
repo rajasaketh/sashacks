@@ -1,0 +1,27 @@
+ods output onewayfreqs=freqout;
+
+ods listing close;
+
+proc freq data=sashelp.class;
+
+tables sex age;
+
+run;
+
+ods listing;
+
+data want ;
+
+  length var $32 fvalue $50 ;
+
+  set freqout;
+
+  var=scan(table,-1);
+
+  fvalue=vvaluex('F_'||var);
+
+  keep var fvalue frequency percent;
+
+run;
+
+proc print width=min; run;
