@@ -1,0 +1,5 @@
+proc means data=bur.bureau_oil(keep=&nm_. )
+ stackods n mean median min max std ;
+ods output summary=bureau_oil_hive(rename=(n=n_hive mean=mean_hive median=median_hive min=min_hive 
+			max=max_hive stddev=std_hive));
+run;
